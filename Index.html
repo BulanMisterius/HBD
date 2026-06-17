@@ -132,6 +132,18 @@
             z-index: 99999;
             position: relative;
         }
+
+        /* TIMER HITUNG MUNDUR */
+        .countdown-timer {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            border: 2px dashed var(--pink-main);
+        }
         
         /* GAME MEMORI */
         .game-board {
@@ -274,10 +286,10 @@
         <label class="label-input" style="display:block; margin-top:10px; text-align:left;">Nama Kamu:</label>
         <input type="text" id="usernameInput" style="width:100%; padding:10px; margin-bottom:10px; border-radius:10px; border:1px solid #ccc;" placeholder="Ketik nama kamu..." autocomplete="off">
         
-        <label class="label-input" style="display:block; text-align:left;">Unggah Foto Cantikmu:</label>
+        <label class="label-input" style="display:block; text-align:left;">Unggah Foto Utama (Tengah Hati):</label>
         <input type="file" id="mainPhotoInput" style="width:100%; padding:10px; margin-bottom:10px;" accept="image/*">
 
-        <label class="label-input" style="display:block; text-align:left;">Unggah Foto Kenanganmu (Untuk Kurva Hati):</label>
+        <label class="label-input" style="display:block; text-align:left;">Unggah Galeri Foto (Untuk Kurva Hati):</label>
         <input type="file" id="galleryPhotoInput" style="width:100%; padding:10px; margin-bottom:10px;" accept="image/*" multiple>
         
         <button class="btn" style="margin-top: 10px;" onclick="prosesDataAwal()">Simpan & Lanjut 🎁</button>
@@ -286,8 +298,14 @@
     <div class="card" id="slide05">
         <img src="https://media.tenor.com/PZ7aWwYF6F0AAAAi/doraemon.gif" class="gif-img" alt="Doraemon Transisi" referrerpolicy="no-referrer">
         <h1>Semua Siap! 💌</h1>
-        <p class="message-text">Kejutan digitalmu sudah siap. Klik tombol di bawah untuk membuka isinya.</p>
-        <button class="btn" onclick="bukaPesanUtama()">Buka Pesan 🔓</button>
+        <p class="message-text">Kejutan digitalmu sudah siap tersimpan dengan aman.</p>
+        
+        <div id="countdownContainer" style="display:none;">
+            <p style="margin-top: 10px; font-size: 0.9rem;">Namun kado ini masih terkunci. Sabar ya, tunggu sampai waktunya tiba:</p>
+            <div class="countdown-timer" id="timerText">00 Hari 00 Jam 00 Menit 00 Detik</div>
+        </div>
+
+        <button class="btn" id="btnBukaPesan" onclick="bukaPesanUtama()" style="display:none;">Buka Pesan 🔓</button>
     </div>
 
     <div class="card" id="slide1">
@@ -374,6 +392,9 @@
         let namaPenerima = "Ayang";
         let mainPhotoData = "";
         let gallerySources = [];
+        let countdownInterval;
+
+        const targetDate = new Date("July 10, 2026 00:00:00").getTime();
 
         function prosesDataAwal() {
             const inputNama = document.getElementById('usernameInput').value.trim();
@@ -405,6 +426,38 @@
 
             document.getElementById('slide0').classList.remove('active-card');
             document.getElementById('slide05').classList.add('active-card');
+
+            jalankanHitungMundur();
+        }
+
+        function jalankanHitungMundur() {
+            cekWaktu();
+            countdownInterval = setInterval(cekWaktu, 1000);
+        }
+
+        function cekWaktu() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const btnBuka = document.getElementById('btnBukaPesan');
+            const countdownBox = document.getElementById('countdownContainer');
+            const timerText = document.getElementById('timerText');
+
+            if (distance <= 0) {
+                countdownBox.style.display = 'none';
+                btnBuka.style.display = 'inline-block';
+                clearInterval(countdownInterval);
+            } else {
+                countdownBox.style.display = 'block';
+                btnBuka.style.display = 'none';
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timerText.innerHTML = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+            }
         }
 
         function bukaPesanUtama() {
