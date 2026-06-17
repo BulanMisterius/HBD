@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Kado Spesial Untuk Kekasihku</title>
+    <title>Kado Spesial Untuk Kesayanganku</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 
@@ -133,7 +133,7 @@
             position: relative;
         }
         
-        /* GAME MEMORI (4x3 GRID) */
+        /* GAME MEMORI */
         .game-board {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -219,19 +219,19 @@
             object-fit: cover;
             border: 3px solid white;
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            border-radius: 10px;
+            border-radius: 50%;
             opacity: 0;
-            transform: scale(0.5);
-            transition: transform 0.5s ease, opacity 0.5s ease;
+            transform: scale(0);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
         }
 
         #finalCenterPhoto {
             position: relative;
-            width: 200px; height: 200px;
+            width: 240px; height: 240px;
             border-radius: 50%;
-            border: 6px solid var(--pink-main);
+            border: 6px solid var(--white-glass);
             object-fit: cover;
-            box-shadow: 0 10px 25px rgba(251, 111, 146, 0.5);
+            box-shadow: 0 15px 35px rgba(251, 111, 146, 0.6);
             z-index: 10;
             transform: scale(0);
             transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -239,7 +239,7 @@
 
         .climax-ui {
             position: absolute;
-            bottom: 8%;
+            bottom: 5%;
             text-align: center;
             z-index: 20;
             width: 90%;
@@ -253,7 +253,8 @@
             font-family: 'Fredoka One', cursive;
             color: var(--pink-dark);
             text-shadow: 0 2px 4px rgba(255,255,255,0.6);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            font-size: 1.6rem;
         }
     </style>
 </head>
@@ -270,14 +271,14 @@
         <img src="https://feeldreams.github.io/pandaputih.gif" class="gif-img" alt="Panda Putih" referrerpolicy="no-referrer">
         <h1>Siapa di Sana? 🕵️‍♂️</h1>
         
-        <label class="label-input">Nama Kamu:</label>
-        <input type="text" id="usernameInput" class="input-biasa" placeholder="Ketik nama kamu..." autocomplete="off">
-        <br>
-        <label class="label-input">Unggah Foto Tercantikmu:</label>
-        <input type="file" id="mainPhotoInput" class="input-biasa" accept="image/*">
-        <br>
-        <label class="label-input">Unggah semua fotomu (min 100):</label>
-        <input type="file" id="galleryPhotoInput" class="input-biasa" accept="image/*" multiple>
+        <label class="label-input" style="display:block; margin-top:10px; text-align:left;">Nama Kamu:</label>
+        <input type="text" id="usernameInput" style="width:100%; padding:10px; margin-bottom:10px; border-radius:10px; border:1px solid #ccc;" placeholder="Ketik nama kamu..." autocomplete="off">
+        
+        <label class="label-input" style="display:block; text-align:left;">Unggah Foto Cantikmu:</label>
+        <input type="file" id="mainPhotoInput" style="width:100%; padding:10px; margin-bottom:10px;" accept="image/*">
+
+        <label class="label-input" style="display:block; text-align:left;">Unggah Foto Kenanganmu (Untuk Kurva Hati):</label>
+        <input type="file" id="galleryPhotoInput" style="width:100%; padding:10px; margin-bottom:10px;" accept="image/*" multiple>
         
         <button class="btn" style="margin-top: 10px;" onclick="prosesDataAwal()">Simpan & Lanjut 🎁</button>
     </div>
@@ -328,16 +329,16 @@
 
     <div class="card" id="slide5">
         <img src="https://feeldreams.github.io/g5.gif" class="gif-img" style="width:100px; height:100px;" alt="Peluk" referrerpolicy="no-referrer">
-        <h1>Surat Untuk Kekasihku 💖</h1>
+        <h1>Pesan Untukmu 💖</h1>
         <div class="romantic-letter" id="typedTextContainer"></div>
     </div>
 
     <div id="climaxStage">
         <div id="mosaicContainer"></div>
-        <img id="finalCenterPhoto" alt="Bidadariku">
+        <img id="finalCenterPhoto" alt="Kesayanganku">
         <div class="climax-ui" id="climaxUiText">
-            <h2>Selamat Ulang Tahun, Kekasihku! ✨</h2>
-            <p style="font-weight:700; color:var(--text-dark); line-height:1.4;">Dari pria yang selalu mengagumimu.<br>Lop lop lop lop ❤️</p>
+            <h2>Selamat Ulang Tahun! ✨</h2>
+            <p style="font-weight:700; color:var(--text-dark); line-height:1.4;">Dari pria yang selalu mengagumimu.</p>
         </div>
     </div>
 
@@ -346,12 +347,7 @@
         const particleItems = [
             { type: 'text', val: '❤️' }, { type: 'text', val: '💖' }, { type: 'text', val: '🌸' }, { type: 'text', val: '✨' },
             { type: 'img', val: 'https://github.com/Knuckleas/happyday/blob/main/animal_14939688.png?raw=true' },
-            { type: 'img', val: 'https://github.com/Knuckleas/happyday/blob/main/animal_14939711.png?raw=true' },
-            { type: 'img', val: 'https://github.com/Knuckleas/happyday/blob/main/flower_13490646.png?raw=true' },
-            { type: 'img', val: 'https://github.com/Knuckleas/happyday/blob/main/food_16150423.png?raw=true' },
-            { type: 'img', val: 'https://github.com/Knuckleas/happyday/blob/main/food_16150418.png?raw=true' },
-            { type: 'img', val: 'https://github.com/Knuckleas/happyday/blob/main/food_13635854.png?raw=true' },
-            { type: 'img', val: 'https://github.com/Knuckleas/happyday/blob/main/food_14934546.png?raw=true' }
+            { type: 'img', val: 'https://github.com/Knuckleas/happyday/blob/main/animal_14939711.png?raw=true' }
         ];
 
         const particleContainer = document.getElementById('particles');
@@ -378,7 +374,6 @@
         let namaPenerima = "Ayang";
         let mainPhotoData = "";
         let gallerySources = [];
-        let audioDimulai = false;
 
         function prosesDataAwal() {
             const inputNama = document.getElementById('usernameInput').value.trim();
@@ -387,7 +382,6 @@
 
             if (inputNama === "") { alert("Masukkan nama kamu terlebih dahulu ya!"); return; }
             namaPenerima = inputNama;
-            document.querySelectorAll('.output-nama').forEach(el => el.innerText = namaPenerima);
 
             if (mainFile) {
                 const reader = new FileReader();
@@ -398,8 +392,7 @@
                 reader.readAsDataURL(mainFile);
             }
 
-            const maxFiles = Math.min(galleryFiles.length, 5);
-            let loadedCount = 0;
+            const maxFiles = Math.min(galleryFiles.length, 10);
             if (maxFiles > 0) {
                 for (let i = 0; i < maxFiles; i++) {
                     const reader = new FileReader();
@@ -438,11 +431,6 @@
         }
         btnNo.addEventListener('mouseover', lari);
         btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); lari(); }, { passive: false });
-
-        function AlignmentAwalTombolLari() {
-            btnNo.style.left = (window.innerWidth / 2 - btnNo.offsetWidth / 2) + 'px';
-            btnNo.style.top = (window.innerHeight / 2 + 80) + 'px';
-        }
 
         function lanjutKeGame() {
             btnNo.style.display = 'none';
@@ -498,7 +486,6 @@
 
         function resetBoard() { [hasFlippedCard, lockBoard] = [false, false]; [firstCard, secondCard] = [null, null]; }
 
-        // --- EFEK KONFETI & SELEBRASI GAME ---
         function triggerWinCelebration() {
             document.getElementById('winSection').style.display = 'block';
             for (let i = 0; i < 50; i++) {
@@ -527,7 +514,9 @@
         let typed = false;
         function startTyping() {
             if (typed) return; typed = true;
-            const rawText = `Bohong jika aku melupakan harimu, ${namaPenerima}.|Aku menulis pesan ini khusus untukmu. Aku selalu melihat usahamu. Kamu berjuang melewati tugas kuliah semester 5 setiap hari. Kamu tetap sukses tampil luar biasa. Rasa lelahmu sama sekali tidak meredupkan pesonamu di mataku.|Kamu pantas mendapatkan semua hal baik. Kamu cerdas. Kamu sangat menarik. Kehadiranmu selalu berhasil mengalihkan duniaku. Kamu tidak memerlukan validasi dari siapa pun karena kamu sudah sempurna apa adanya. Tetaplah menjadi wanita hebat.|Selamat ulang tahun, kekasihku. Pesan ini murni dari pria yang selalu mengagumi setiap langkahmu.`;
+            
+            const rawText = `Selamat Ulang Tahun Kesayanganku ! ^^|Boleh ya, aku merayakan hari spesialmu lewat tulisan ini?|Katanya, makin dewasa, ulang tahun bukan lagi soal seberapa ramai pesta. Tapi tentang siapa yang tetap tinggal saat dunia lagi gak baik-baik aja.|Dan lewat momen ini, aku berharap kamu tahu kalau kamu selalu bisa mengandalkanku untuk itu. Isi tulisan ini gak lebih dari sekadar harapan dan do'a.|Terima kasih ya, sudah mengizinkan aku menjadi bagian dari ceritamu di sepanjang tahun lalu. Aku tahu betul betapa banyak tawa, tangis, dan lelah yang kamu lewati di tahun sebelumnya.|Karena itu, aku bersyukur bisa merayakanmu di tahun ini. Dan kamu pantas dirayakan, meskipun kecil-kecilan. Terima kasih karena sudah selalu berusaha mencari alasan untuk tetap bertahan dan berjuang.|Semoga di usia ini, tangki cintamu terisi penuh, duniamu terasa lebih teduh, dan perlahan mimpi-mimpimu itu tumbuh menjadi utuh. ❤️`;
+            
             const container = document.getElementById('typedTextContainer');
             let index = 0;
             
@@ -537,59 +526,62 @@
                     if (char === '|') container.innerHTML += '<br><br>';
                     else container.innerHTML += char;
                     document.getElementById('slide5').scrollTop = document.getElementById('slide5').scrollHeight;
-                    index++; setTimeout(typeWriter, 40);
+                    index++; setTimeout(typeWriter, 50);
                 } else {
-                    // Puncak transisi otomatis ke animasi klimaks foto setelah 2 detik
-                    setTimeout(jalankanKlimaksAnimasiFoto, 2000);
+                    setTimeout(jalankanKlimaksAnimasiFoto, 3000);
                 }
             }
             typeWriter();
         }
 
-        // --- KLIMAKS ANIMASI FOTO (KASKADE & ZOOM-OUT MAINSTAGE) ---
+        // --- KLIMAKS ANIMASI FOTO (POLA HATI & ZOOM) ---
         function jalankanKlimaksAnimasiFoto() {
             document.getElementById('slide5').classList.remove('active-card');
             const stage = document.getElementById('climaxStage');
             const mosaic = document.getElementById('mosaicContainer');
             stage.style.display = 'flex';
 
-            // Jika user tidak menginput galeri foto, gunakan fallback aset ikon game
             const fotoAset = gallerySources.length > 0 ? gallerySources : iconArray;
 
-            // Tahap 1 & 2: Memunculkan hujan/kaskade salinan foto galeri secara acak berurutan
-            let maxSalinan = 45; 
+            let maxTitikHati = 40; 
             let count = 0;
 
-            function spawnPhotoInstance() {
-                if (count >= maxSalinan) {
-                    // Beranjak ke Tahap 3: Memicu Zoom-Out Kaskade dan Zoom-In Foto Utama
-                    setTimeout(pemicuKlimaksFinal, 1000);
+            function spawnFotoHati() {
+                if (count >= maxTitikHati) {
+                    setTimeout(pemicuKlimaksFinal, 1200);
                     return;
                 }
+
+                // Kalkulasi Parametrik Kurva Hati
+                const t = (count / maxTitikHati) * Math.PI * 2;
+                const x = 16 * Math.pow(Math.sin(t), 3);
+                const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+
+                // Konversi koordinat ke Persentase Layar
+                const leftPos = 50 + (x * 2.4); 
+                const topPos = 45 - (y * 2.4);
+
                 const src = fotoAset[count % fotoAset.length];
                 const img = document.createElement('img');
                 img.src = src;
                 img.classList.add('animated-photo');
 
-                // Koordinat acak di sekeliling wilayah layar
-                img.style.left = Math.random() * 85 + '%';
-                img.style.top = Math.random() * 85 + '%';
-                img.style.width = Math.random() * 40 + 80 + 'px';
-                img.style.height = img.style.width; 
-                img.style.transform = `rotate(${Math.random() * 40 - 20}deg) scale(0.5)`;
+                img.style.left = `calc(${leftPos}% - 25px)`; 
+                img.style.top = `calc(${topPos}% - 25px)`;
+                img.style.width = '50px';
+                img.style.height = '50px'; 
 
                 mosaic.appendChild(img);
 
-                // Efek pop-up halus saat spawn
                 setTimeout(() => {
-                    img.style.opacity = '0.85';
-                    img.style.transform = img.style.transform.replace('scale(0.5)', 'scale(1)');
+                    img.style.opacity = '0.9';
+                    img.style.transform = 'scale(1)';
                 }, 50);
 
                 count++;
-                setTimeout(spawnPhotoInstance, 80); // Kecepatan kaskade foto muncul
+                setTimeout(spawnFotoHati, 90); 
             }
-            spawnPhotoInstance();
+            spawnFotoHati();
         }
 
         function pemicuKlimaksFinal() {
@@ -597,20 +589,19 @@
             const centerPhoto = document.getElementById('finalCenterPhoto');
             const uiText = document.getElementById('climaxUiText');
 
-            // Kontainer mozaik mengecil (Zoom Out) & meredup murni lewat CSS Transition
-            mosaic.style.transform = 'scale(0.25)';
-            mosaic.style.opacity = '0.25';
+            // Efek Zoom-Out untuk Kurva Hati
+            mosaic.style.transform = 'scale(0.85)';
+            mosaic.style.opacity = '0.8';
 
-            // Memunculkan Foto Utama dari tengah secara dramatis (Zoom In)
+            // Efek Zoom-In Foto Utama di Tengah
             setTimeout(() => {
                 centerPhoto.style.transform = 'scale(1)';
                 
-                // Memunculkan teks surat peluk hangat dari bawah ke atas
                 setTimeout(() => {
                     uiText.style.opacity = '1';
                     uiText.style.transform = 'translateY(0)';
                 }, 800);
-            }, 500);
+            }, 600);
         }
     </script>
 </body>
